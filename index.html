@@ -77,14 +77,12 @@
             background: var(--dark-light);
             clip-path: none;
             margin: 2rem 0;
-            z-index: 1;
         }
 
         section:nth-child(even) {
             background: var(--dark);
             clip-path: none;
             margin: 2rem 0;
-            z-index: 2;
         }
 
         /* Make sure there are no other clip-path values being applied */
@@ -667,25 +665,67 @@
     }
 }
 
-/* Smooth reveal for sections - replace your existing section styles */
-section {
-    padding: 6rem 2rem;
-    position: relative;
+
+
+
+
+/* Awards Section */
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-/* Keep the existing clip-path for sections but remove the opacity and transform */
-section:nth-child(odd) {
-    background: var(--dark-light);
-    clip-path: polygon(0 0, 100% 5%, 100% 95%, 0 100%);
-    margin: 2rem 0;
-    z-index: 1;
+.award-item {
+    background: rgba(15, 23, 42, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    transition: var(--transition);
 }
 
-section:nth-child(even) {
-    background: var(--dark);
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%);
-    margin: 2rem 0;
-    z-index: 2;
+.award-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: rgba(124, 58, 237, 0.1);
+}
+
+.award-item i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.award-item:hover i {
+    color: var(--primary);
+    transform: scale(1.2);
+}
+
+.award-item h3 {
+    color: var(--light);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.award-date {
+    color: var(--primary-light);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.award-item p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .awards-grid {
+        grid-template-columns: 1fr;
+    }
 }
     </style>
 </head>
@@ -757,7 +797,59 @@ section:nth-child(even) {
                 </div>
             </div>
         </section>        
+        <!-- Awards Section -->
+        <section id="awards">
+            <h2 class="section-title">Awards & Achievements</h2>
+            <div class="awards-grid">
+                <!-- National Level -->
+                
 
+                <div class="award-item fade-up">
+                    <i class="fas fa-medal"></i>
+                    <h3>3rd Place - Poem</h3>
+                    <div class="award-date">Inter-Primary School Sports and Cultural,2018 (Organized By Bangladesh Government)</div>
+                    <p>Awarded by Bangladesh Prime Minister and Education Minister</p>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-trophy"></i>
+                    <h3>1st Place - Project Display</h3>
+                    <div class="award-date">43 Udayan National Science Fest,2025</div>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-trophy"></i>
+                    <h3>3rd Place - Chess</h3>
+                    <div class="award-date">43 Udayan National Science Fest,2025</div>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-medal"></i>
+                    <h3>2nd Place - Science Project</h3>
+                    <div class="award-date">3rd DCCSC Intra Science Fest,2025</div>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-medal"></i>
+                    <h3>2nd Place - Science Project</h3>
+                    <div class="award-date">7th Laboratorian National Science Fest,2025</div>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-medal"></i>
+                    <h3>2nd Place - Lunnar Oddesy</h3>
+                    <div class="award-date">7th Laboratorian National Science Fest,2025</div>
+                </div>
+                <div class="award-item fade-up">
+                    <i class="fas fa-award"></i>
+                    <h3>3rd Place - History Writting</h3>
+                    <div class="award-date">History of 1971 (Organized By Bangladesh Shilpokola Academy)</div>
+                    <p>Awarded by Dhaka University V.C.</p>
+                </div>
+
+                <div class="award-item fade-up">
+                    <i class="fas fa-code"></i>
+                    <h3>3rd Place - Proggramming Contest</h3>
+                    <div class="award-date">Government Science College CSE Fest,2025</div>
+                </div>
+
+            </div>
+        </section>
 
         <!-- Projects Section -->
         <section id="skills">
@@ -1101,7 +1193,13 @@ section:nth-child(even) {
             element.style.transitionDelay = `${index * 0.1}s`;
             fadeUpObserver.observe(element);
         });
-
+        
+        // Add this new code for award items
+        document.querySelectorAll('.award-item').forEach((element, index) => {
+            element.classList.add('fade-up');
+            element.style.transitionDelay = `${index * 0.1}s`;
+            fadeUpObserver.observe(element);
+        });
         // Apply zoom-in animation to contact methods
         document.querySelectorAll('.contact-method').forEach((element, index) => {
             element.classList.add('zoom-in');
@@ -1133,6 +1231,16 @@ section:nth-child(even) {
         document.querySelectorAll('.fade-up, .fade-left, .fade-right, .zoom-in').forEach(element => {
             resetObserver.observe(element);
         });
+
+
+        // Add this after the skill items observer
+        document.querySelectorAll('.award-item').forEach((element, index) => {
+            element.classList.add('fade-up');
+            element.style.transitionDelay = `${index * 0.1}s`;
+            fadeUpObserver.observe(element);
+        });
+
+
     </script>
 </body>
 </html>
